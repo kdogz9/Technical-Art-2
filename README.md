@@ -24,18 +24,16 @@
 - **Roadmap**: Outline what the essay will cover
 
 
-As game engines evolve, technical art optimisation has become increasingly critical for indie developers as they compete against triple A companies to produce industry standard games. The battle for small teams between larger teams has impacted indie developers to adjust their workflows and resources to make it as cost effective as they can whilst maintaining quality in their work. This is very relevant in regards to technical art as technical art can be quite expensive in terms of time, optimisation and also the materials used so indie teams often have to take shortcuts. (Vapidvim, 2024). My perspective on this is 
+As game engines evolve, technical art optimisation has become increasingly critical for indie developers as they compete against triple A companies to produce industry standard games. The battle for small teams between larger teams has impacted indie developers to adjust their workflows and resources to make it as cost effective as they can whilst maintaining quality in their work. This is very relevant in regards to technical art as it can be quite expensive in terms of time, optimisation and also the materials used so indie teams often have to take shortcuts. (Vapidvim, 2024). My perspective on this is 
 
-In this essay I plan to discuss how indie developers optimize technical art by balancing performance and visual quality through choices in rendering pipelines, shaders and anti-aliasing, while exploring creative solutions and cross-platform considerations that impact scalability and efficiency. I will also be exploring how these choices affect speed and maintainability compared to triple A studios. 
+In this essay I plan to discuss how indie developers optimize technical art by balancing performance and visual quality through choices in rendering pipelines and anti-aliasing, while exploring creative solutions and cross-platform considerations that impact scalability and efficiency. I will also be exploring how these choices affect speed and maintainability compared to triple A studios. 
 
 
 ## Background/Historical Context (150-200 words)
-*Assessment Focus: Exploring + Connecting*
 
-- Provide technical foundation and definitions
-- Explain the evolution or current state of the technology
-- Reference key developments or milestones
-- Use academic and industry sources to support claims
+Rendering is central to game visuals, and two dominant pipelines define modern graphics: forward rendering and deferred rendering. Forward rendering calculates lighting for each object as it is drawn, making it simple and efficient for scenes with only a few lights, while also supporting transparency naturally (Unity, 2023). However, it scales poorly with many lights and heavy overdraw. By contrast, deferred rendering first stores surface data in multiple textures called a G-buffer, then applies lighting in a second pass. This allows complex lighting with less GPU load but requires significantly more memory, and transparency is harder to implement (Olsson et al., 2012).
+
+Another visual challenge is aliasing, where diagonal edges look blocky due to pixelation. Anti-aliasing techniques such as MSAA, FXAA, SMAA, and TAA evolved to address this, each trading quality for performance. Modern engines like Unity, Unreal, and Godot integrate these by default (NVIDIA, 2017). Similarly, shaders—programs controlling how surfaces look—can be made with visual “graphs” or written in code. Shader graphs have accelerated iteration for artists, while hand-coded shaders remain vital for unique, optimized effects (Unity, 2023). Together, these technologies underpin how developers balance fidelity with performance.
 
 **Research Integration:**
 - Include at least 2-3 academic or industry sources
@@ -44,30 +42,14 @@ In this essay I plan to discuss how indie developers optimize technical art by b
 
 
 ## Critical Analysis (300-400 words)
-*Assessment Focus: Exploring + Connecting + Situating*
 
-This is the core of your essay. Address multiple perspectives:
 
 ### Technical Perspective
-- How does the technology work?
-- What are the technical advantages and limitations?
-- Include specific examples from game engines (Unity, Unreal, etc.)
+Forward rendering works best for stylized or low-light-count games, often chosen by indies for its simplicity and compatibility with weaker hardware (Unity, 2023). Deferred rendering, in contrast, powers AAA games where multiple dynamic lights and realism are required, but demands more memory and GPU strength (Olsson et al., 2012). Anti-aliasing techniques further highlight this trade-off: FXAA and SMAA are common in indie projects due to their speed, while TAA dominates AAA titles, particularly in Unreal Engine, because it handles complex 3D scenes with smoother results (Epic Games, 2021). Shaders deepen the divide: visual graphs let small teams iterate quickly, while hand-coded shaders give AAA studios control over custom effects and optimization (Akenine-Möller et al., 2018).
 
 ### Industry Practice
-- How do professional studios implement this?
-- What workflows or best practices have emerged?
-- Reference real game examples or case studies
+Indie developers frequently adopt forward rendering pipelines, FXAA or SMAA, and shader graphs because these are the defaults in engines like Unity and Godot. For example, Hollow Knight (Team Cherry, 2017) relied on forward rendering and MSAA to run smoothly across platforms, while Hades (Supergiant, 2018) used Unreal’s material editor for painterly effects rather than realism. In contrast, AAA developers prioritize deferred rendering with TAA and hand-coded shaders, as seen in Red Dead Redemption and Horizon Zero Dawn, which deliver photorealistic results but require powerful consoles and GPUs.
 
 ### Critical Considerations
-- Performance implications
-- Accessibility for different team sizes/budgets
-- Platform-specific considerations
-- Environmental/ethical considerations (e.g., power consumption, accessibility)
+For indies, the balance lies in accessibility: forward rendering and lightweight AA ensure their games run on weaker hardware like the Nintendo Switch, broadening audiences. AAA, meanwhile, assume players own high-end PCs or consoles, which allows them to push fidelity but raises barriers for accessibility. Team size also matters—indies benefit from shader graphs because they empower artists directly, reducing dependency on programmers. AAA studios, however, can afford specialists who fine-tune hand-coded shaders. Finally, environmental factors like power consumption highlight another contrast: indies often unintentionally produce more efficient games, while AAA’s pursuit of realism increases energy use and hardware demands.
 
-**Use subheadings** to organize complex analysis:
-```markdown
-### Performance Trade-offs
-[Analysis content...]
-
-### Workflow Implications
-[Analysis content...]
